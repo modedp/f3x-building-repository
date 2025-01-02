@@ -5,7 +5,16 @@ local Workspace = game:GetService("Workspace")
 local Http = game:GetService("HttpService")
 local Build = Workspace.Build
 local Debris = game:GetService("Debris")
-local Defaults = game.ServerScriptService.BuildMaster.Default
+local Defaults = game.ServerStorage:FindFirstChild("Default") or Instance.new("Folder",game.ServerStorage)
+Defaults.Name = "Default"
+-- Editd this for github.
+local DDefaults = {"SpotLight","Fire","PointLight","Seat","Smoke","Sparkles","SpawnLocation","SpecialMesh","SpotLight","SurfaceLight","VehicleSeat","Part","CornerWedgePart","TrussPart","WedgePart"}
+for i = 1, #DDefaults do
+	local newInstance = Defaults:FindFirstChild(DDefaults[i]) or Instance.new(DDefaults[i],Defaults)
+	if i==1 then
+		newInstance.Name = "DefaultLight"
+	end
+end
 local MeshPartToPartConversion = true --[[ Might not work all the time ]]
 local fl = math.floor
 local PartIds = {Block=1, TrussPart=2, WedgePart=3, CornerWedgePart=4, Cylinder=5, Ball=6, Seat=7, VehicleSeat=8, SpawnLocation=9}
